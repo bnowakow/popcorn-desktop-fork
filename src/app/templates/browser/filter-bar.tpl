@@ -1,7 +1,7 @@
 <ul class="nav nav-hor left">
 	<li class="source active showMovies"><%= i18n.__("Movies") %></li>
 	<li class="source showShows"><%= i18n.__("TV Series") %></li>
-        <li class="source showAnime"><%= i18n.__("Anime") %></li>
+    <li class="source showAnime"><%= i18n.__("Anime") %></li>
 </ul>
 <ul id="nav-filters" class="nav nav-hor filters">
 	<% if(typeof type !== 'undefined'){ %>
@@ -44,7 +44,20 @@
 				<% }); %>
 			</ul>
 		</li>
-	<%}%>
+    <%} if(typeof rating !== 'undefined'){ %>
+        <li class="dropdown filter ratings">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <%= i18n.__("Rating") %>
+                <span class="value">>= <%= rating %></span>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <% _.each(ratings, function(c) { %>
+                <li><a href="#" data-value="<%= c %>"><%= c %></a></li>
+                <% }); %>
+            </ul>
+        </li>
+    <%}%>
 </ul>
 <ul class="nav nav-hor right">
 	<li>
