@@ -10,6 +10,7 @@
 			search: '.search',
 			searchClear: '.search .clear',
 			sorterValue: '.sorters .value',
+			ratingValue: '.ratings .value',
 			typeValue: '.types .value',
 			genreValue: '.genres  .value'
 		},
@@ -20,6 +21,7 @@
 			'click  @ui.searchClear': 'clearSearch',
 			'click  @ui.search': 'focusSearch',
 			'click .sorters .dropdown-menu a': 'sortBy',
+			'click .ratings .dropdown-menu a': 'changeRating',
 			'click .genres .dropdown-menu a': 'changeGenre',
 			'click .types .dropdown-menu a': 'changeType',
 			'keyup #rating_value': 'changeRating',
@@ -77,6 +79,7 @@
 			$('.sorters .dropdown-menu a:nth(0)').addClass('active');
 			$('.genres .dropdown-menu a:nth(0)').addClass('active');
 			$('.types .dropdown-menu a:nth(0)').addClass('active');
+			$('.ratings .dropdown-menu a:nth(0)').addClass('active');
 		},
 		rightclick_search: function (e) {
 			e.stopPropagation();
@@ -245,6 +248,20 @@
 			this.model.set({
 				keyword: '',
 				type: type
+			});
+		},
+
+		changeRating: function (e) {
+			App.vent.trigger('about:close');
+			this.$('.ratings .active').removeClass('active');
+			$(e.target).addClass('active');
+
+			var rating = $(e.target).attr('data-value');
+			this.ui.ratingValue.text('>= ' + rating);
+
+			this.model.set({
+				keyword: '',
+				rating: rating
 			});
 		},
 
