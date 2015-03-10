@@ -49,13 +49,8 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= i18n.__("Rating") %>
             <span class="value">0</span>
-            <span class="caret"></span>
+            <input id="rating_value" type="text" placeholder="<%= i18n.__("Min. rating") %>">
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <input id="rating_value" type="text" placeholder="<%= i18n.__("Min. rating") %>">
-            </li>
-        </ul>
     </li>
     <%}%>
 </ul>
