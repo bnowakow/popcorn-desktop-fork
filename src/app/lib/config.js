@@ -157,6 +157,19 @@
             torrentCache: 'TorrentCache'
         },
 
+        ratings: [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        
         getProvider: function (type) {
             var provider = App.Config.providers[type];
             if (provider instanceof Array) {

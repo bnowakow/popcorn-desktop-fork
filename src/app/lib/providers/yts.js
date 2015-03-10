@@ -81,6 +81,10 @@
             params.genre = filters.genre;
         }
 
+        if (filters.rating) {
+            params.minimum_rating = filters.rating;
+        }
+        
         if (filters.order === 1) {
             params.order_by = 'asc';
         }

@@ -10,6 +10,7 @@
             search: '.search',
             searchClear: '.search .clear',
             sorterValue: '.sorters .value',
+            ratingValue: '.ratings .value',
             typeValue: '.types .value',
             genreValue: '.genres  .value'
         },
@@ -20,6 +21,7 @@
             'click  @ui.searchClear': 'clearSearch',
             'click  @ui.search': 'focusSearch',
             'click .sorters .dropdown-menu a': 'sortBy',
+            'click .ratings .dropdown-menu a': 'changeRating',
             'click .genres .dropdown-menu a': 'changeGenre',
             'click .types .dropdown-menu a': 'changeType',
             'keyup #rating_value': 'changeRating',
@@ -80,6 +82,7 @@
             $('.sorters .dropdown-menu a:nth(0)').addClass('active');
             $('.genres .dropdown-menu a:nth(0)').addClass('active');
             $('.types .dropdown-menu a:nth(0)').addClass('active');
+            $('.ratings .dropdown-menu a:nth(0)').addClass('active');
         },
         rightclick_search: function (e) {
             e.stopPropagation();
@@ -258,27 +261,17 @@
         },
 
         changeRating: function (e) {
-            require('nw.gui').Window.get().showDevTools();
-            var ratingValue = parseInt(e.target.value, 10);
-            if (this.model.get('rating') === ratingValue) {
-                return;
-            }
-
             App.vent.trigger('about:close');
-            //App.vent.trigger('torrentCollection:close');
-            this.$('.types .active').removeClass('active');
+            this.$('.ratings .active').removeClass('active');
             $(e.target).addClass('active');
 
-            //alert(e.target.value);
-            //alert(ratingValue);
-            alert(this.model.get('rating'));
-            var type = $(e.target).attr('data-value');
-            this.ui.typeValue.text(i18n.__(type));
+            var rating = $(e.target).attr('data-value');
+            this.ui.ratingValue.text('>= ' + rating);
 
-            this.model.set('rating', ratingValue);
-            //this.model.set({
-            //	rating: ratingValue
-            //});
+            this.model.set({
+                keyword: '',
+                rating: rating
+            });
         },        
         
         changeGenre: function (e) {

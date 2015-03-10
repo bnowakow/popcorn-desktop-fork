@@ -477,6 +477,23 @@
                 }
             });
 
+            server.expose('getratings', function (args, opt, callback) {
+                switch (App.currentview) {
+                    case 'shows':
+                    case 'anime':
+                    case 'movies':
+                        popcornCallback(callback, false, {
+                            'ratings': App.Config.ratings
+                        });
+                        break;
+                    default:
+                        popcornCallback(callback, false, {
+                            'types': []
+                        });
+                        break;
+                }
+            });
+            
             server.expose('gettypes', function (args, opt, callback) {
                 switch (App.currentview) {
                 case 'anime':
