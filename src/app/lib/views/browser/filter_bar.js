@@ -24,7 +24,6 @@
 			'click .ratings .dropdown-menu a': 'changeRating',
 			'click .genres .dropdown-menu a': 'changeGenre',
 			'click .types .dropdown-menu a': 'changeType',
-			'keyup #rating_value': 'changeRating',
 			'click #filterbar-settings': 'settings',
 			'click #filterbar-about': 'about',
 			'click .showMovies': 'showMovies',
@@ -263,44 +262,6 @@
 				keyword: '',
 				rating: rating
 			});
-		},
-
-		changeRating: function (e) {
-			App.vent.trigger('about:close');
-			this.$('.ratings .active').removeClass('active');
-			$(e.target).addClass('active');
-
-			var rating = $(e.target).attr('data-value');
-			this.ui.ratingValue.text('>= ' + rating);
-
-			this.model.set({
-				keyword: '',
-				rating: rating
-			});
-		},
-
-		changeRating: function (e) {
-			require('nw.gui').Window.get().showDevTools();
-			var ratingValue = parseInt(e.target.value, 10);
-			if (this.model.get('rating') === ratingValue) {
-				return;
-			}
-
-			App.vent.trigger('about:close');
-			//App.vent.trigger('torrentCollection:close');
-			this.$('.types .active').removeClass('active');
-			$(e.target).addClass('active');
-
-			//alert(e.target.value);
-			//alert(ratingValue);
-			alert(this.model.get('rating'));
-			var type = $(e.target).attr('data-value');
-			this.ui.typeValue.text(i18n.__(type));
-
-			this.model.set('rating', ratingValue);
-			//this.model.set({
-			//	rating: ratingValue
-			//});
 		},
 
 		changeGenre: function (e) {
