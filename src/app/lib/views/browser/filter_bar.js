@@ -266,6 +266,20 @@
 		},
 
 		changeRating: function (e) {
+			App.vent.trigger('about:close');
+			this.$('.ratings .active').removeClass('active');
+			$(e.target).addClass('active');
+
+			var rating = $(e.target).attr('data-value');
+			this.ui.ratingValue.text('>= ' + rating);
+
+			this.model.set({
+				keyword: '',
+				rating: rating
+			});
+		},
+
+		changeRating: function (e) {
 			require('nw.gui').Window.get().showDevTools();
 			var ratingValue = parseInt(e.target.value, 10);
 			if (this.model.get('rating') === ratingValue) {
