@@ -44,14 +44,6 @@
                 <% }); %>
             </ul>
         </li>
-    <%} if(typeof sorter !== 'undefined'){ %>
-    <li class="dropdown filter rating">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= i18n.__("Rating") %>
-            <span class="value">0</span>
-            <input id="rating_value" type="text" placeholder="<%= i18n.__("Min. rating") %>">
-        </a>
-    </li>
     <%} if(typeof rating !== 'undefined'){ %>
     <li class="dropdown filter ratings">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
